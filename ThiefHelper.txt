@@ -10,6 +10,8 @@
 ##
 ## You can read the full terms at https://account.elderscrollsonline.com/add-on-terms
 ##
+## Comments for code. Almost all modules names have prefix "Up_". "Up" means "Upyachka". Upyachka means everything.
+## Source file names has no prefixes (in contrast to modules inside) - only for better navigation (my personal opinion).
 
 ## TODO list of files here
 
@@ -22,13 +24,14 @@ Settings/SettingsController.lua
 ## Modules for data handling.
 DataProvider/DataProvider.lua
 DataProvider/ProvidersController.lua
+DataProvider/Thief/FenceDataProvider.lua
 
 ## UI related modules.
 UI/Widgets/InfoContainer.lua
 UI/UiTools.lua
 UI/UiFactory.lua
 UI/UiController.lua
-
+UI/ThiefHelperInfoPresenter.lua
 
 ## General addon module.
 ThiefHelper.lua

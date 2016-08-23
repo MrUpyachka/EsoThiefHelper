@@ -12,9 +12,10 @@ ThiefHelper.Default.Settings = {
     UI = {
         Info = {
             Window = {
-                Padding = 11,
-                Position = { OffsetX = 33, OffsetY = 33 }
-            }
+                Padding = 11, -- Padding for window content.
+                Position = { OffsetX = 33, OffsetY = 33 } -- Point on screen to align TOPLEFT point of floating window.
+            },
+            UpdateInterval = 200 -- Interval for displayed update.
         }
     }
 }

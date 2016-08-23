@@ -4,7 +4,7 @@ Up_UiFactory = {}
 --[[
     TODO list
     # Configure layouts in xml.
-    ]]--
+    ]] --
 
 -- System window manager. Same as GetWindowManager(). See globalvars.lua
 local windowManager = GetWindowManager()

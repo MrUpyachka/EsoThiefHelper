@@ -10,5 +10,6 @@ function Up_AddonConfigurator.configureOnLoadedCallback(addon)
             EVENT_MANAGER:UnregisterForEvent(addon.name .. "_addonLoadingHandler", EVENT_ADD_ON_LOADED)
         end
     end
+
     EVENT_MANAGER:RegisterForEvent(addon.name .. "_addonLoadingHandler", EVENT_ADD_ON_LOADED, onAddonLoaded)
 end

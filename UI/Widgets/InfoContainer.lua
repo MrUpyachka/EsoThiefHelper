@@ -5,7 +5,7 @@
 Up_InfoContainer = {}
 
 function Up_InfoContainer:new(id, root, backdrop, container)
-    local instance = { ID = id, Root = root, Backdrop = backdrop, Container = container }
+    local instance = { ID = id, Root = root, Backdrop = backdrop, Container = container, LabelsList = {} }
     self.__index = self
     return setmetatable(instance, self)
 end

@@ -11,4 +11,5 @@ function ThiefHelper.UiController.initializeUI()
     local position = ThiefHelper.Settings.UI.Info.Window.Position
     infoWindowRoot:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, position.OffsetX, position.OffsetY)
     Up_UiTools.configureAsFloat(infoWindowRoot, position)
+    Up_UiTools.configureToHideTogetherWithCompass(infoWindowRoot)
 end
