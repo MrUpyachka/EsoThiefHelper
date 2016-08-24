@@ -28,6 +28,9 @@ end
 -- Overriden method Up_DataProvider:getText(addon).
 function FenceDataProvider:getText(addon)
     local limit, sold, _ = GetFenceSellTransactionInfo()
-    local text = string.format("Fence: %d + (%d) / %d", sold, self.StolenItemsCount, limit)
+    local soldTextureString = "|t32:32:esoui\\art\\tutorial\\guildstore_sell_tabicon_up.dds|t"
+    local stolenTextureString = "|t20:20:esoui\\art\\inventory\\inventory_stolenitem_icon.dds|t"
+    local fenceTextureString = "|t32:32:esoui\\art\\icons\\mapkey\\mapkey_fence.dds|t"
+    local text = string.format("%s%d + %s(%d) %s%d", soldTextureString, sold, stolenTextureString, self.StolenItemsCount, fenceTextureString, limit)
     return text
 end
