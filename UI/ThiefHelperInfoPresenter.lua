@@ -63,6 +63,7 @@ function ThiefHelperInfoPresenter:onUpdateRequired()
     local labels = self.LabelsList
     self:checkAndUpdateLabels()
     local index = 1
+    local labelsNumber = getTableSize(labels)
     for sourceId, _ in pairs(self.OrderOfSources) do
         local label = labels[index]
         local provider = providers.List[sourceId]
@@ -73,11 +74,19 @@ function ThiefHelperInfoPresenter:onUpdateRequired()
             if text ~= nil then
                 label:SetText(text)
                 label:SetHidden(false)
+                index = index + 1 -- increase index only if label used.
             else
+                label:SetText("") -- clean text of unused labels.
                 label:SetHidden(true) -- hide label if there are no data.
             end
         end
-        index = index + 1
+    end
+    if index <= labelsNumber then
+        for i = index, labelsNumber do
+            local label = labels[index]
+            label:SetText("") -- clean text of unused labels.
+            label:SetHidden(true) -- hide label if there are no data.
+        end
     end
 end
 

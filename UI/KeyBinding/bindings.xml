@@ -1,6 +1,6 @@
 <Bindings>
     <Layer name="SI_KEYBINDINGS_LAYER_GENERAL">
-        <Category name="|cAAFF55Thief helper controls|r">
+        <Category name="THIEF_HELPER_ADDON_NAME">
             <Action name="THIEF_HELPER_TOGGLE">
                 <Down>ThiefHelper.toggleInfoWindow()</Down>
             </Action>

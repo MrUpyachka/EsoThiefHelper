@@ -1,8 +1,10 @@
 -- This module initializes mandatory attributes.
 -- Addon root. Used to configure all parts. Only calls to other parts.
 ThiefHelper = {}
--- name of addon reuired by Up_AddonConfigurator.
+-- name of addon required by Up_AddonConfigurator.
 ThiefHelper.name = "ThiefHelper"
+-- version of addon required by Up_SettingsController.
+ThiefHelper.version = 1
 -- Any default data placed here.
 ThiefHelper.Default = {}
 -- default settings for addon. Required by Up_SettingsController.

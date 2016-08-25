@@ -11,5 +11,5 @@ function ThiefHelper.onLoaded(event)
     presenter:start()
 end
 
--- Invokation of Up_AddonConfigurator to bind onLoaded as callback for first time of addon loading.
+-- Invocation of Up_AddonConfigurator to bind onLoaded as callback for first time of addon loading.
 Up_AddonConfigurator.configureOnLoadedCallback(ThiefHelper)

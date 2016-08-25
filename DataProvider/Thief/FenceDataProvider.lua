@@ -1,6 +1,31 @@
 -- Used to calculate and provide thief (fence - stolen items buyer) information.
 FenceDataProvider = Up_DataProvider:new {
-    StolenItemsCount = 0 -- Count of stolen items.
+    StolenItemsCount = 0, -- Count of stolen items.
+    -- name of addon required by Up_AddonConfigurator.
+    name = "FenceDataProvider",
+    -- version of addon required by Up_SettingsController.
+    version = 1,
+    -- Any default data placed here.
+    Default = {
+        -- default settings for addon. Required by Up_SettingsController.
+        Settings = {
+            Icons = {
+                SoldStolenItemsNumberIcon = {
+                    TexturePath = "esoui\\art\\tutorial\\guildstore_sell_tabicon_up.dds",
+                    Size = 32
+                },
+                StolenItemsNumberInBagIcon = {
+                    TexturePath = "esoui\\art\\inventory\\inventory_stolenitem_icon.dds",
+                    Size = 20
+                },
+                StolenItemsSellingLimitIcon = {
+                    TexturePath = "esoui\\art\\icons\\mapkey\\mapkey_fence.dds",
+                    Size = 32
+                },
+            }
+        }
+    },
+
 }
 
 -- Calculate number of stolen items in inventory.
@@ -23,15 +48,32 @@ function FenceDataProvider:initialize()
     end
 
     EVENT_MANAGER:RegisterForEvent("FenceDataProvider_slotUpdateHandler", EVENT_INVENTORY_SINGLE_SLOT_UPDATE, handleItemSlotUpdate)
+
+    self:onLoaded()
 end
 
 -- Overriden method Up_DataProvider:getText(addon).
 function FenceDataProvider:getText(addon)
     local limit, sold, _ = GetFenceSellTransactionInfo()
-    -- TODO settings attributes for all parameters
-    local soldTextureString = zo_iconFormat("esoui\\art\\tutorial\\guildstore_sell_tabicon_up.dds", 32, 32)
-    local stolenTextureString = zo_iconFormat("esoui\\art\\inventory\\inventory_stolenitem_icon.dds", 20, 20)
-    local fenceTextureString = zo_iconFormat("esoui\\art\\icons\\mapkey\\mapkey_fence.dds", 32, 32)
+    local iconsSettings = self.Settings.Icons
+    local soldItemsNumIconPath = iconsSettings.SoldStolenItemsNumberIcon.TexturePath
+    local soldItemsNumIconSize = iconsSettings.SoldStolenItemsNumberIcon.Size
+
+    local stolenItemsNumIconPath = iconsSettings.StolenItemsNumberInBagIcon.TexturePath
+    local stolenItemsNumIconSize = iconsSettings.StolenItemsNumberInBagIcon.Size
+
+    local sellLimitItemsNumIconPath = iconsSettings.StolenItemsSellingLimitIcon.TexturePath
+    local sellLimitItemsNumIconSize = iconsSettings.StolenItemsSellingLimitIcon.Size
+
+    local soldTextureString = zo_iconFormat(soldItemsNumIconPath, soldItemsNumIconSize, soldItemsNumIconSize)
+    local stolenTextureString = zo_iconFormat(stolenItemsNumIconPath, stolenItemsNumIconSize, stolenItemsNumIconSize)
+    local fenceTextureString = zo_iconFormat(sellLimitItemsNumIconPath, sellLimitItemsNumIconSize, sellLimitItemsNumIconSize)
     local text = string.format("%s%d + %s(%d) %s%d", soldTextureString, sold, stolenTextureString, self.StolenItemsCount, fenceTextureString, limit)
     return text
+end
+
+-- function callback to initialize addon on first loading. Required by Up_AddonConfigurator
+function FenceDataProvider:onLoaded(event)
+    Up_SettingsController.loadSettings(self)
+    FenceDataProviderSettingsMenu.createMenu(self)
 end
