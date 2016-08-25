@@ -3,6 +3,7 @@
 ## Author: logmeinplease
 ## SavedVariables: ThiefHelper_settings
 ## APIVersion: 100015 100016
+## Version: 1.1
 ##
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates.
 ## The Elder Scrolls® and related logos are registered trademarks or trademarks of ZeniMax Media Inc. in the United States and/or other countries.
@@ -17,6 +18,11 @@
 
 ## Initializes required objects for addon. Default settings defined here.
 InitialModule.lua
+## Localization
+Lang/LocaleUtils.lua
+Lang/default.lua
+Lang/$(language).lua
+
 ## Tools for addon configuration.
 Tools/AddonConfigurator.lua
 Settings/SettingsController.lua
@@ -25,6 +31,8 @@ Settings/SettingsController.lua
 DataProvider/DataProvider.lua
 DataProvider/ProvidersController.lua
 DataProvider/Thief/FenceDataProvider.lua
+DataProvider/Test/TestDataProvider.lua
+DataProvider/Teleport/RecallCooldownDataProvider.lua
 
 ## UI related modules.
 UI/Widgets/InfoContainer.lua
@@ -32,6 +40,10 @@ UI/UiTools.lua
 UI/UiFactory.lua
 UI/UiController.lua
 UI/ThiefHelperInfoPresenter.lua
+
+## Key binding
+UI/KeyBinding/bindings.xml
+UI/KeyBinding/KeyBindingActions.lua
 
 ## General addon module.
 ThiefHelper.lua

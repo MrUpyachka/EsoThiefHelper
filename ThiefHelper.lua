@@ -7,6 +7,7 @@ function ThiefHelper.onLoaded(event)
     ThiefHelper.UiController.initializeUI()
     local presenter = ThiefHelperInfoPresenter:new(ThiefHelper.UI.Info.Window, Up_UiFactory)
     ThiefHelper.ProvidersController:registerProvider("FenceInfo", FenceDataProvider:new())
+    ThiefHelper.ProvidersController:registerProvider("RecallCooldownDataProvider", RecallCooldownDataProvider:new())
     presenter:start()
 end
 
