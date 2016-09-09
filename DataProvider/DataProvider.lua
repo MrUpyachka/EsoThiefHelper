@@ -19,5 +19,5 @@ end
 
 -- Override this method to provide your custom data. Must return any string for displaying. NOT nil.
 function Up_DataProvider:getText(addon)
-    error("Data provider has no logic to provide data")
+    d("Data provider has no logic to provide data")
 end

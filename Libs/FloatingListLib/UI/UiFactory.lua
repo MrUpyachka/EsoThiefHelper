@@ -1,5 +1,13 @@
--- Used to create widgets.
-Up_UiFactory = {}
+--Register with LibStub
+local MAJOR, MINOR = "Up_UiFactory", 1
+local LIB, _ = LibStub:NewLibrary(MAJOR, MINOR)
+if not LIB then return end -- avoid double loading.
+
+--- Used to create widgets.
+
+local UiTools = LibStub:GetLibrary("Up_UiTools")
+
+local InfoContainer = LibStub:GetLibrary("Up_InfoContainer")
 
 --[[
     TODO list
@@ -10,7 +18,7 @@ Up_UiFactory = {}
 local windowManager = GetWindowManager()
 
 -- Produces simple top level container.
-function Up_UiFactory.createWindow(id)
+function LIB.createWindow(id)
     local container = windowManager:CreateTopLevelWindow(id)
     container:SetClampedToScreen(true)
     container:SetMouseEnabled(true)
@@ -21,7 +29,7 @@ function Up_UiFactory.createWindow(id)
 end
 
 -- Produces simple container.
-function Up_UiFactory.createContainer(id, parent, type)
+function LIB.createContainer(id, parent, type)
     local backdrop = windowManager:CreateControl("$(parent)_" .. id, parent, type)
     backdrop:SetClampedToScreen(true)
     backdrop:SetResizeToFitDescendents(true)
@@ -31,23 +39,23 @@ function Up_UiFactory.createContainer(id, parent, type)
 end
 
 -- Produces window with shadow backdrop.
-function Up_UiFactory.createShadowWindow(id, padding)
-    local root = Up_UiFactory.createWindow(id)
+function LIB.createShadowWindow(id, padding)
+    local root = LIB.createWindow(id)
 
-    local backdrop = Up_UiFactory.createContainer("backdrop", root, CT_BACKDROP)
+    local backdrop = LIB.createContainer("backdrop", root, CT_BACKDROP)
     backdrop:SetResizeToFitPadding(2 * padding, 2 * padding)
     backdrop:SetAnchor(TOPLEFT, root, TOPLEFT, 0, 0)
-    Up_UiTools.addShadow(backdrop)
+    UiTools.addShadow(backdrop)
 
-    local container = Up_UiFactory.createContainer("container", backdrop, CT_CONTROL)
+    local container = LIB.createContainer("container", backdrop, CT_CONTROL)
     container:SetAnchor(TOPLEFT, backdrop, TOPLEFT, padding, padding)
 
-    return Up_InfoContainer:new(id, root, backdrop, container)
+    return InfoContainer:new(id, root, backdrop, container)
 end
 
 -- Creates label and adds it to specified container.
-function Up_UiFactory.createNormalLabel(id, parent)
-    local container = Up_UiTools.getContainer(parent)
+function LIB.createNormalLabel(id, parent)
+    local container = UiTools.getContainer(parent)
     local label = windowManager:CreateControl("$(parent)_" .. id, container, CT_LABEL)
     label:SetColor(0.8, 0.8, 0.8, 1) -- TODO custom color
     label:SetFont("ZoFontGameMedium")

@@ -1,11 +1,15 @@
--- Used to help with configuration of UI.
-Up_UiTools = {}
+--Register with LibStub
+local MAJOR, MINOR = "Up_UiTools", 1
+local LIB, _ = LibStub:NewLibrary(MAJOR, MINOR)
+if not LIB then return end -- avoid double loading.
+
+--- Used to help with configuration of UI.
 
 -- Default size of shadows.
-Up_UiTools.DEFAULT_INSET_SIZE = 16
+LIB.DEFAULT_INSET_SIZE = 16
 
 -- Returns content wrapper for any window
-function Up_UiTools.getContainer(widget)
+function LIB.getContainer(widget)
     local container = widget.Container
     -- Check inner container/backdrop and use it as parent if its exists
     if container == nil then container = widget.Backdrop end
@@ -14,9 +18,16 @@ function Up_UiTools.getContainer(widget)
     return container
 end
 
+-- Returns root control for any window.
+function LIB.getRoot(widget)
+    local container = widget.Root
+    if container == nil then container = widget end
+    return container
+end
+
 -- Returns content wrapper for any window
-function Up_UiTools.addShadow(widget)
-    local insetSize = Up_UiTools.DEFAULT_INSET_SIZE
+function LIB.addShadow(widget)
+    local insetSize = LIB.DEFAULT_INSET_SIZE
     widget:SetInsets(insetSize, insetSize, -insetSize, -insetSize)
     widget:SetEdgeTexture("EsoUI/Art/ChatWindow/chat_BG_edge.dds", 256, 256, insetSize)
     widget:SetCenterTexture("EsoUI/Art/ChatWindow/chat_BG_center.dds")
@@ -26,7 +37,7 @@ function Up_UiTools.addShadow(widget)
 end
 
 -- Configures window as floating.
-function Up_UiTools.configureAsFloat(widget, position)
+function LIB.configureAsFloat(widget, position)
     widget:SetMovable(true)
     local function onMoveStop(self)
         position.OffsetX = self:GetLeft()
@@ -37,7 +48,7 @@ function Up_UiTools.configureAsFloat(widget, position)
 end
 
 -- Sets widget to switch visibility depends on compass visibility.
-function Up_UiTools.configureToHideTogetherWithCompass(widget)
+function LIB.configureToHideTogetherWithCompass(widget)
     -- Check that compass visible and follows by its state.
     local function hideWithCompass()
         if ZO_CompassFrame then

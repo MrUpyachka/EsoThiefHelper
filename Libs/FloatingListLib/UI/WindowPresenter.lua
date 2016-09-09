@@ -1,15 +1,24 @@
+--Register with LibStub
+local MAJOR, MINOR = "Up_FloatingWindowPresenter", 1
+local LIB, _ = LibStub:NewLibrary(MAJOR, MINOR)
+if not LIB then return end -- avoid double loading.
+
 --[[
 -- Handles displaying of ThiefHelper window.
 ]] --
-ThiefHelperInfoPresenter = {}
+LIB.name = "Up_FloatingWindowPresenter"
+
+local UiTools = LibStub:GetLibrary("Up_UiTools")
 
 -- Creates an base for presenter.
-function ThiefHelperInfoPresenter:new(infoWindow, widgetFactory)
+function LIB:new(addon, window, widgetFactory, type, options)
     local instance = {
-        InfoWindow = infoWindow,
+        Addon = addon,
+        Window = window,
         WidgetFactory = widgetFactory,
-        OrderOfSources = ThiefHelper.Settings.UI.Info.OrderOfSources, -- Used to sort labels in container. number -> {sourceId, label}
-        LabelsList = {} -- List of created labels.
+        LabelsList = {}, -- List of created labels.
+        Type = type, -- type of window, used as suffix for naming.
+        Options = options, -- Options to configure presenter.
     }
     self.__index = self
     return setmetatable(instance, self)
@@ -25,52 +34,44 @@ local function getTableSize(table)
 end
 
 -- Checks that labels exists for each provider and adds new if not.
-function ThiefHelperInfoPresenter:checkAndUpdateLabels()
-    local providers = ThiefHelper.ProvidersController
+function LIB:checkAndUpdateLabels()
+    local providers = self.Addon.ProvidersController
     local labels = self.LabelsList
     local factory = self.WidgetFactory
     local labelsNumber = getTableSize(labels)
     if providers.Size > labelsNumber then
         -- we need to add more labels
-        local container = Up_UiTools.getContainer(self.InfoWindow)
-        for sourceId, _ in pairs(providers.List) do
-            if self.OrderOfSources[sourceId] == nil then
-                self.OrderOfSources[sourceId] = 0 -- default order in list
-            end
-        end
+        local container = UiTools.getContainer(self.Window)
         local labelsToAdd = providers.Size - labelsNumber
         for i = 1, labelsToAdd do
             local index = labelsNumber + 1 -- index for new label in list
-            local label = factory.createNormalLabel(ThiefHelper.name .. "_label_" .. index, container)
+            local label = factory.createNormalLabel(self.Addon.name .. "_label_" .. index, container)
             if labelsNumber > 0 then
                 local lastLabel = labels[labelsNumber]
                 label:SetAnchor(TOPLEFT, lastLabel, BOTTOMLEFT, 0, 0)
             else
                 label:SetAnchor(TOPLEFT, container, TOPLEFT, 0, 0)
             end
-            label:SetText(sourceId)
+            label:SetText("")
             labels[index] = label -- save new label
             labelsNumber = labelsNumber + 1 -- calc new number of labels
         end
-
-        table.sort(self.OrderOfSources, function(first, second) return first > second end)
     end
 end
 
 -- Updates info window with new data retrieved from providers.
-function ThiefHelperInfoPresenter:onUpdateRequired()
-    local providers = ThiefHelper.ProvidersController
+function LIB:onUpdateRequired()
+    local providers = self.Addon.ProvidersController
     local labels = self.LabelsList
     self:checkAndUpdateLabels()
     local index = 1
     local labelsNumber = getTableSize(labels)
-    for sourceId, _ in pairs(self.OrderOfSources) do
+    for sourceId, provider in pairs(providers.List) do
         local label = labels[index]
-        local provider = providers.List[sourceId]
-        if provider == nil then
+        if provider == nil and label ~= nil then
             label:SetHidden(true)
-        else
-            local text = provider:getText(ThiefHelper)
+        elseif provider ~= nil and label ~= nil then
+            local text = provider:getText(self.Addon)
             if text ~= nil then
                 label:SetText(text)
                 label:SetHidden(false)
@@ -81,6 +82,13 @@ function ThiefHelperInfoPresenter:onUpdateRequired()
             end
         end
     end
+    local window = UiTools.getContainer(self.Window)
+    if index == 1 then
+        -- No data displayed - hide window.
+        window:SetHidden(true)
+    else
+        window:SetHidden(false)
+    end
     if index <= labelsNumber then
         for i = index, labelsNumber do
             local label = labels[index]
@@ -90,12 +98,10 @@ function ThiefHelperInfoPresenter:onUpdateRequired()
     end
 end
 
--- Starts displaying of data for InfoWindow.
-function ThiefHelperInfoPresenter:start()
-    local presenter = self
+-- Starts displaying of data for Window.
+function LIB:start()
     local function callback()
-        presenter:onUpdateRequired()
+        self:onUpdateRequired()
     end
-
-    EVENT_MANAGER:RegisterForUpdate(ThiefHelper.name .. "_infoPresenter", ThiefHelper.Settings.UI.Info.UpdateInterval, callback)
+    EVENT_MANAGER:RegisterForUpdate(LIB.name .. self.Type, self.Options.UpdateInterval, callback)
 end

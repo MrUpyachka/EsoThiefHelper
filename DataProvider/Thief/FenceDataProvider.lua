@@ -28,6 +28,8 @@ FenceDataProvider = Up_DataProvider:new {
 
 }
 
+local SettingsController = LibStub:GetLibrary("Up_SettingsController")
+
 -- Calculate number of stolen items in inventory.
 function FenceDataProvider:countStolenItems()
     local bagCache = SHARED_INVENTORY:GenerateFullSlotData(nil, BAG_BACKPACK)
@@ -74,6 +76,6 @@ end
 
 -- function callback to initialize addon on first loading. Required by Up_AddonConfigurator
 function FenceDataProvider:onLoaded(event)
-    Up_SettingsController.loadSettings(self)
+    SettingsController.loadSettings(self)
     FenceDataProviderSettingsMenu.createMenu(self)
 end
