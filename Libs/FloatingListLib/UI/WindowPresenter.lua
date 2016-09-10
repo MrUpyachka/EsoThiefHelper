@@ -57,6 +57,7 @@ function LIB:checkAndUpdateLabels()
             labelsNumber = labelsNumber + 1 -- calc new number of labels
         end
     end
+    --d(self.Addon.name .. " has " .. providers.Size .. " providers")
 end
 
 -- Updates info window with new data retrieved from providers.
@@ -82,7 +83,7 @@ function LIB:onUpdateRequired()
             end
         end
     end
-    local window = UiTools.getContainer(self.Window)
+    local window = UiTools.getBackdrop(self.Window)
     if index == 1 then
         -- No data displayed - hide window.
         window:SetHidden(true)
@@ -103,5 +104,6 @@ function LIB:start()
     local function callback()
         self:onUpdateRequired()
     end
-    EVENT_MANAGER:RegisterForUpdate(LIB.name .. self.Type, self.Options.UpdateInterval, callback)
+    local key = self.Addon.name .. "_" .. LIB.name .. "_" .. self.Type
+    EVENT_MANAGER:RegisterForUpdate(key, self.Options.UpdateInterval, callback)
 end

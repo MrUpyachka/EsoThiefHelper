@@ -6,7 +6,12 @@ if not LIB then return end -- avoid double loading.
 ---
 -- Used to configure common logic and values for any addon.
 
--- Requires addon.onLoaded method and addon.name field.
+--- Use this method to bind your addon instance for listening of EVENT_ADD_ON_LOADED.
+-- @param addon instance of your addon.
+-- ATTENTION: this method requires next fields for your addon:
+-- @field #string name An unique string identifier of your addon.
+-- For example: addon.name = "GenryMultiTool"
+--
 function LIB.configureOnLoadedCallback(addon)
     local function onAddonLoaded(event, addonName)
         -- Filter addon's by name.

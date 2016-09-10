@@ -61,7 +61,6 @@ Lang/$(language).lua
 DataProvider/DataProvider.lua
 DataProvider/Test/TestDataProvider.lua
 DataProvider/Teleport/RecallCooldownDataProvider.lua
-DataProvider/Item/ItemDataProvider.lua
 
 ## Fence data displaying scripts.
 UI/ThiefHelperSettingsMenu.lua

@@ -18,6 +18,14 @@ function LIB.getContainer(widget)
     return container
 end
 
+-- Returns window backdrop for any window.
+function LIB.getBackdrop(widget)
+    local container = widget.Backdrop
+    if container == nil then container = widget.Root end
+    if container == nil then container = widget end
+    return container
+end
+
 -- Returns root control for any window.
 function LIB.getRoot(widget)
     local container = widget.Root
