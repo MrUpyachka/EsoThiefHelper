@@ -23,3 +23,13 @@ function LIB:registerProvider(sourceId, provider)
     self.List[sourceId] = provider
     self.Size = self.Size + 1
 end
+
+--- Stops and removes all providers.
+function LIB:clean()
+    for sourceId, provider in pairs(self.List) do
+        if provider and provider.stop then
+           provider:stop()
+        end
+        self.List[sourceId] = nil
+    end
+end

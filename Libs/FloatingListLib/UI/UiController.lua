@@ -41,7 +41,7 @@ function LIB:initializeUI()
 end
 
 -- Toggles visibility of Info window.
-function LIB:toggleInfoWindow()
+function LIB:toggleWindow()
     self.Settings.UI.Window.Enabled = not self.Settings.UI.Window.Enabled;
     self:checkWindowVisibility()
 end

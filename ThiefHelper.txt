@@ -41,6 +41,11 @@ libs\FloatingListLib\Settings\SettingsController.lua
 ## FloatingListLib: Modules for data handling.
 libs\FloatingListLib\DataProvider\ProvidersController.lua
 
+## FloatingListLib: Localization
+libs\FloatingListLib\Lang\LocaleUtils.lua
+libs\FloatingListLib\Lang\default.lua
+libs\FloatingListLib\Lang\$(language).lua
+
 ## FloatingListLib: UI related modules.
 libs\FloatingListLib\UI\Widgets\InfoContainer.lua
 libs\FloatingListLib\UI\UiTools.lua
@@ -49,26 +54,25 @@ libs\FloatingListLib\UI\SettingsMenu.lua
 libs\FloatingListLib\UI\UiController.lua
 libs\FloatingListLib\UI\WindowPresenter.lua
 
-## Initializes required objects for addon. Default settings defined here.
+## ThiefHelper: Initializes required objects for addon. Default settings defined here.
 InitialModule.lua
 
-## Localization
-Lang/LocaleUtils.lua
-Lang/default.lua
-Lang/$(language).lua
+## ThiefHelper: Localization
+Lang\default.lua
+Lang\$(language).lua
 
-## Modules for data handling.
-DataProvider/DataProvider.lua
-DataProvider/Test/TestDataProvider.lua
-DataProvider/Teleport/RecallCooldownDataProvider.lua
+## ThiefHelper: Modules for data handling.
+DataProvider\DataProvider.lua
+DataProvider\Test\TestDataProvider.lua
+DataProvider\Teleport\RecallCooldownDataProvider.lua
 
-## Fence data displaying scripts.
-UI/ThiefHelperSettingsMenu.lua
-DataProvider/Thief/FenceDataProvider.lua
+## ThiefHelper: Fence data displaying scripts.
+UI\ThiefHelperSettingsMenu.lua
+DataProvider\Thief\FenceDataProvider.lua
 
-## Key binding
-UI/KeyBinding/bindings.xml
-UI/KeyBinding/KeyBindingActions.lua
+## ThiefHelper: Key binding
+UI\KeyBinding\bindings.xml
+UI\KeyBinding\KeyBindingActions.lua
 
-## General addon module.
+## ThiefHelper: General addon module.
 ThiefHelper.lua

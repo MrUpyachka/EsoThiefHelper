@@ -42,6 +42,11 @@ libs\FloatingListLib\Settings\SettingsController.lua
 ## FloatingListLib: Modules for data handling.
 libs\FloatingListLib\DataProvider\ProvidersController.lua
 
+## FloatingListLib: Localization
+libs\FloatingListLib\Lang\LocaleUtils.lua
+libs\FloatingListLib\Lang\default.lua
+libs\FloatingListLib\Lang\$(language).lua
+
 ## FloatingListLib: UI related modules.
 libs\FloatingListLib\UI\Widgets\InfoContainer.lua
 libs\FloatingListLib\UI\UiTools.lua
