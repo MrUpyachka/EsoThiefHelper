@@ -1,7 +1,7 @@
 ## Title: |c99004cThiefHelper|r
 ## Description: Indicates data related to pickpocketing and stealing. No commands or customizable attributes.
 ## Author: logmeinplease
-## SavedVariables: ThiefHelper_settings FenceDataProvider_settings
+## SavedVariables: ThiefHelper_settings FenceDataProvider_settings ThiefBagDataProvider_settings
 ## APIVersion: 100015 100016
 ## Version: 1.1
 ##
@@ -63,12 +63,15 @@ Lang\$(language).lua
 
 ## ThiefHelper: Modules for data handling.
 DataProvider\DataProvider.lua
-DataProvider\Test\TestDataProvider.lua
 DataProvider\Teleport\RecallCooldownDataProvider.lua
 
 ## ThiefHelper: Fence data displaying scripts.
-UI\ThiefHelperSettingsMenu.lua
+DataProvider\Thief\Settings\FenceDataProviderSettingsMenu.lua
 DataProvider\Thief\FenceDataProvider.lua
+
+## ThiefHelper: Thief-bag data displaying scripts.
+DataProvider\Thief\Settings\ThiefBagDataProviderSettingsMenu.lua
+DataProvider\Thief\ThiefBagDataProvider.lua
 
 ## ThiefHelper: Key binding
 UI\KeyBinding\bindings.xml

@@ -11,5 +11,7 @@ local localizedStrings = {
     CONFIG_ICON_TEXTURE_PATH_TOOLTIP = "Укажите путь к текстуре иконки",
     CONFIG_ICON_SIZE = "Размер",
     CONFIG_ICON_TEXTURE_PATH_TOOLTIP = "Укажите размер иконки",
+    CONFIG_INDICATOR_TOGGLE = "Включен/Выключен",
+    CONFIG_INDICATOR_TOGGLE_TOOLTIP = "Позволяет включить или отключить индикатор",
 }
 LocaleUtils.register(localizedStrings, localizationVersion)

@@ -3,17 +3,6 @@ RecallCooldownDataProvider = Up_DataProvider:new {
     Cooldown = 0 -- Actual cooldown time.
 }
 
--- Calculate number of stolen items in inventory.
-function RecallCooldownDataProvider:countStolenItems()
-    local bagCache = SHARED_INVENTORY:GenerateFullSlotData(nil, BAG_BACKPACK)
-    self.StolenItemsCount = 0
-    for key, data in pairs(bagCache) do
-        if (data.stolen) then
-            self.StolenItemsCount = self.StolenItemsCount + data.stackCount
-        end
-    end
-end
-
 -- Overriden method Up_DataProvider:initialize().
 function RecallCooldownDataProvider:initialize()
     self.Cooldown = GetRecallCooldown()

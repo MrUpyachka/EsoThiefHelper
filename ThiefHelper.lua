@@ -19,7 +19,8 @@ function self.onLoaded(event)
     self.UiController:initializeUI()
 
     local presenter = FloatingWindowPresenter:new(self, self.UI.Window, UiFactory, "general", self.Settings)
-    self.ProvidersController:registerProvider("FenceInfo", FenceDataProvider:new())
+    self.ProvidersController:registerProvider("FenceDataProvider", FenceDataProvider:new())
+    self.ProvidersController:registerProvider("ThiefBagDataProvider", ThiefBagDataProvider:new())
     self.ProvidersController:registerProvider("RecallCooldownDataProvider", RecallCooldownDataProvider:new())
     presenter:start()
 

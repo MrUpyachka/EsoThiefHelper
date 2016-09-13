@@ -11,5 +11,7 @@ local localizedStrings = {
     CONFIG_ICON_TEXTURE_PATH_TOOLTIP = "Specify icon location (its texture)",
     CONFIG_ICON_SIZE = "Size",
     CONFIG_ICON_TEXTURE_PATH_TOOLTIP = "Specify icon size",
+    CONFIG_INDICATOR_TOGGLE = "Enabled/Disabled",
+    CONFIG_INDICATOR_TOGGLE_TOOLTIP = "Allows to enable/disable indicator",
 }
 LocaleUtils.register(localizedStrings, localizationVersion)
