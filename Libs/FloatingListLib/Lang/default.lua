@@ -14,6 +14,6 @@ local localizedStrings = {
     CONFIG_ENABLED_STATE_TOGGLE = "Enabled/Disabled",
     CONFIG_ENABLED_STATE_TOGGLE_TOOLTIP = "Allows to enable/disable element",
     CONFIG_WINDOW_BACKDROP_STATE = "Background state",
-    CONFIG_UI_RELOAD_REQUIREMENT = "Will need to reload the UI",
+    CONFIG_UI_RELOAD_REQUIREMENT = "Switch will reload UI to apply new settings",
 }
 LocaleUtils.register(localizedStrings, localizationVersion)

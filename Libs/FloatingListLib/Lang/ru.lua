@@ -14,6 +14,6 @@ local localizedStrings = {
     CONFIG_ENABLED_STATE_TOGGLE = "Включен/Выключен",
     CONFIG_ENABLED_STATE_TOGGLE_TOOLTIP = "Позволяет включить или отключить элемент",
     CONFIG_WINDOW_BACKDROP_STATE = "Подложка для окна",
-    CONFIG_UI_RELOAD_REQUIREMENT = "Чтобы изменения вступили в силу - перезагрузите интерфейс",
+    CONFIG_UI_RELOAD_REQUIREMENT = "Потребуется перезагрузка интерфейса. Сразу.",
 }
 LocaleUtils.register(localizedStrings, localizationVersion)
