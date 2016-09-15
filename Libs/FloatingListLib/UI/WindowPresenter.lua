@@ -1,5 +1,5 @@
 --Register with LibStub
-local MAJOR, MINOR = "Up_FloatingWindowPresenter", 1
+local MAJOR, MINOR = "Up_FloatingWindowPresenter", 2
 local LIB, _ = LibStub:NewLibrary(MAJOR, MINOR)
 if not LIB then return end -- avoid double loading.
 
@@ -67,7 +67,7 @@ function LIB:onUpdateRequired()
     self:checkAndUpdateLabels()
     local index = 1
     local labelsNumber = getTableSize(labels)
-    for sourceId, provider in pairs(providers.List) do
+    for _, provider in pairs(providers.OrderedList) do
         local label = labels[index]
         if provider == nil and label ~= nil then
             label:SetHidden(true)

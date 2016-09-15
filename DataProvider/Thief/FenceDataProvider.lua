@@ -13,12 +13,12 @@ FenceDataProvider = Up_DataProvider:new {
                 SoldStolenItemsNumberIndicator = {
                     Enabled = true,
                     TexturePath = "esoui\\art\\tutorial\\guildstore_sell_tabicon_up.dds",
-                    Size = 32
+                    Size = 24
                 },
                 StolenItemsSellingLimitIndicator = {
                     Enabled = true,
                     TexturePath = "esoui\\art\\icons\\mapkey\\mapkey_fence.dds",
-                    Size = 32
+                    Size = 24
                 },
             }
         }

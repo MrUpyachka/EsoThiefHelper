@@ -1,5 +1,5 @@
 --Register with LibStub
-local MAJOR, MINOR = "Up_UiTools", 1
+local MAJOR, MINOR = "Up_UiTools", 2
 local LIB, _ = LibStub:NewLibrary(MAJOR, MINOR)
 if not LIB then return end -- avoid double loading.
 

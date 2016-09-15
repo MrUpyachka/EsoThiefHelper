@@ -1,5 +1,5 @@
 --Register with LibStub
-local MAJOR, MINOR = "Up_UiFactory", 1
+local MAJOR, MINOR = "Up_UiFactory", 2
 local LIB, _ = LibStub:NewLibrary(MAJOR, MINOR)
 if not LIB then return end -- avoid double loading.
 
@@ -39,18 +39,22 @@ function LIB.createContainer(id, parent, type)
 end
 
 -- Produces window with shadow backdrop.
-function LIB.createShadowWindow(id, padding)
+function LIB.createPaddingWindow(id, padding, shadowEnabled)
     local root = LIB.createWindow(id)
-
-    local backdrop = LIB.createContainer("backdrop", root, CT_BACKDROP)
-    backdrop:SetResizeToFitPadding(2 * padding, 2 * padding)
-    backdrop:SetAnchor(TOPLEFT, root, TOPLEFT, 0, 0)
-    UiTools.addShadow(backdrop)
-
-    local container = LIB.createContainer("container", backdrop, CT_CONTROL)
-    container:SetAnchor(TOPLEFT, backdrop, TOPLEFT, padding, padding)
-
-    return InfoContainer:new(id, root, backdrop, container)
+    if shadowEnabled then
+        local backdrop = LIB.createContainer("backdrop", root, CT_BACKDROP)
+        backdrop:SetResizeToFitPadding(2 * padding, 2 * padding)
+        backdrop:SetAnchor(TOPLEFT, root, TOPLEFT, 0, 0)
+        UiTools.addShadow(backdrop)
+        local container = LIB.createContainer("container", backdrop, CT_CONTROL)
+        container:SetAnchor(TOPLEFT, backdrop, TOPLEFT, padding, padding)
+        return InfoContainer:new(id, root, backdrop, container)
+    else
+        root:SetResizeToFitPadding(2 * padding, 2 * padding)
+        local container = LIB.createContainer("container", root, CT_CONTROL)
+        container:SetAnchor(TOPLEFT, root, TOPLEFT, padding, padding)
+        return InfoContainer:new(id, root, container)
+    end
 end
 
 -- Creates label and adds it to specified container.

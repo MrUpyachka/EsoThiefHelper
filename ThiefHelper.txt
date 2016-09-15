@@ -51,6 +51,7 @@ libs\FloatingListLib\UI\Widgets\InfoContainer.lua
 libs\FloatingListLib\UI\UiTools.lua
 libs\FloatingListLib\UI\UiFactory.lua
 libs\FloatingListLib\UI\SettingsMenu.lua
+libs\FloatingListLib\UI\WindowSettingsMenu.lua
 libs\FloatingListLib\UI\UiController.lua
 libs\FloatingListLib\UI\WindowPresenter.lua
 

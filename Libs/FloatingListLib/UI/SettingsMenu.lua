@@ -28,8 +28,8 @@ end
 function LIB.createIndicatorToggleControl(iconSettings, defaultSettings)
     return {
         type = "checkbox",
-        name = GetString(CONFIG_INDICATOR_TOGGLE),
-        tooltip = GetString(CONFIG_INDICATOR_TOGGLE_TOOLTIP),
+        name = GetString(CONFIG_ENABLED_STATE_TOGGLE),
+        tooltip = GetString(CONFIG_ENABLED_STATE_TOGGLE_TOOLTIP),
         getFunc = function() return iconSettings.Enabled end,
         setFunc = function(state) iconSettings.Enabled = state end,
         width = "full", --or "half" (optional)
@@ -69,6 +69,23 @@ function LIB.createIconSizeConfigControl(iconSettings, defaultSettings)
         default = defaultSettings.Size, --(optional)
         getFunc = function() return iconSettings.Size end,
         setFunc = function(newValue) iconSettings.Size = newValue end
+    }
+end
+
+
+--- Returns new editbox binded to specified addon settings for icon path.
+function LIB.createColorPickerControl(settings, defaultSettings)
+    return {
+        type = "colorpicker",
+        name = GetString(CONFIG_WINDOW_BACKDROP_COLOR),
+        tooltip = GetString(CONFIG_WINDOW_BACKDROP_COLOR_TOOLTIP),
+        getFunc = function() return settings.Color.R, settings.Color.G, settings.Color.B, settings.Color.A end,
+        setFunc = function(r, g, b, a) settings.Color.R = r; settings.Color.G = g; settings.Color.B = b; settings.Color.A = a end,
+        width = "full", --or "half" (optional)
+        disabled = false, --or boolean (optional)
+        warning =  GetString(CONFIG_UI_RELOAD_REQUIREMENT),
+        default = { defaultSettings.Color.R, defaultSettings.Color.G, defaultSettings.Color.B, defaultSettings.Color.A },
+        reference = nil --(optional) unique global reference to control
     }
 end
 

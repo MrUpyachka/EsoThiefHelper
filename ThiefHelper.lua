@@ -6,6 +6,7 @@ local UiFactory = LibStub:GetLibrary("Up_UiFactory")
 local UiController = LibStub:GetLibrary("Up_UiController")
 local FloatingWindowPresenter = LibStub:GetLibrary("Up_FloatingWindowPresenter")
 local AddonConfigurator = LibStub:GetLibrary("Up_AddonConfigurator")
+local SettingsMenu = LibStub:GetLibrary("Up_WindowSettingsMenu")
 
 local self = ThiefHelper
 
@@ -17,7 +18,8 @@ function self.onLoaded(event)
     SettingsController.loadSettings(self)
     self.UiController = UiController:new(self.Settings, self)
     self.UiController:initializeUI()
-
+    SettingsMenu.createMenu(self, GetString(THIEF_HELPER_ADDON_NAME))
+    
     local presenter = FloatingWindowPresenter:new(self, self.UI.Window, UiFactory, "general", self.Settings)
     self.ProvidersController:registerProvider("FenceDataProvider", FenceDataProvider:new())
     self.ProvidersController:registerProvider("ThiefBagDataProvider", ThiefBagDataProvider:new())

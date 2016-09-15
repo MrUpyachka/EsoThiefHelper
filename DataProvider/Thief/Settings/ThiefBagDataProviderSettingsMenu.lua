@@ -9,20 +9,16 @@ local SettingsMenu = LibStub:GetLibrary("Up_FloatingWindowSettingsMenu")
 function ThiefBagDataProviderSettingsMenu.createOptionsData(addon)
     return {
         [1] = {
-            type = "header",
-            name = GetString(THIEF_BAG_DATA_PROVIDER_ADDON_NAME)
-        },
-        [2] = {
             type = "description",
             text = GetString(THIEF_BAG_DATA_PROVIDER_ADDON_DESC),
         },
-        [3] = {
+        [2] = {
             type = "submenu",
             name = GetString(THIEF_BAG_DATA_PROVIDER_CONFIG_STOLEN_INDICATOR),
             tooltip = nil,
             controls = SettingsMenu.createIndicatorWithIconControls(addon.Settings.Icons.StolenItemsNumberInBagIndicator, addon.Default.Settings.Icons.StolenItemsNumberInBagIndicator),
         },
-        [4] = {
+        [3] = {
             type = "submenu",
             name = GetString(THIEF_BAG_DATA_PROVIDER_CONFIG_STOLEN_COST_INDICATOR),
             tooltip = nil,

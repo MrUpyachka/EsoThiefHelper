@@ -9,20 +9,16 @@ local SettingsMenu = LibStub:GetLibrary("Up_FloatingWindowSettingsMenu")
 function FenceDataProviderSettingsMenu.createOptionsData(addon)
     return {
         [1] = {
-            type = "header",
-            name = GetString(FENCE_DATA_PROVIDER_ADDON_NAME)
-        },
-        [2] = {
             type = "description",
             text = GetString(FENCE_DATA_PROVIDER_ADDON_DESC),
         },
-        [3] = {
+        [2] = {
             type = "submenu",
             name = GetString(FENCE_DATA_PROVIDER_CONFIG_SOLD_INDICATOR),
             tooltip = nil,
             controls = SettingsMenu.createIndicatorWithIconControls(addon.Settings.Icons.SoldStolenItemsNumberIndicator, addon.Default.Settings.Icons.SoldStolenItemsNumberIndicator),
         },
-        [4] = {
+        [3] = {
             type = "submenu",
             name = GetString(FENCE_DATA_PROVIDER_CONFIG_LIMIT_INDICATOR),
             tooltip = nil,

@@ -1,5 +1,5 @@
 --Register with LibStub
-local MAJOR, MINOR = "Up_UiController", 1
+local MAJOR, MINOR = "Up_UiController", 2
 local LIB, _ = LibStub:NewLibrary(MAJOR, MINOR)
 if not LIB then return end -- avoid double loading.
 
@@ -30,7 +30,7 @@ function LIB:initializeUI()
     self.Root.UI = {}
     self.Root.UI.Window = {}
     local windowPadding = self.Settings.UI.Window.Padding
-    self.Root.UI.Window = UiFactory.createShadowWindow(self.Root.name .. "_Window", windowPadding)
+    self.Root.UI.Window = UiFactory.createPaddingWindow(self.Root.name .. "_Window", windowPadding, self.Settings.UI.Window.Background.Enabled)
     local windowRoot = self.Root.UI.Window.Root
     local position = self.Settings.UI.Window.Position
     windowRoot:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, position.OffsetX, position.OffsetY)
